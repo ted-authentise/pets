@@ -1,9 +1,6 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import Providers from "./providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Navbar } from "./navbar";
 
 export const metadata = {
   title: "Dog App",
@@ -17,8 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <body className="h-screen w-screen bg-white dark:bg-black text-black dark:text-white">
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
