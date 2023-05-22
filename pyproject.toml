@@ -9,6 +9,7 @@ packages = [{include = "pets_api"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = {extras = ["all"], version = "^0.95.2"}
+black = "^23.3.0"
 
 
 [build-system]
