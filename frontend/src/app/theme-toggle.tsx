@@ -8,7 +8,7 @@ type Theme = "light" | "dark";
 
 const useTheme = () => {
   const getInitialTheme = (): Theme => {
-    if (localStorage.theme === "light" || localStorage.theme === "dark") {
+    if (localStorage?.theme === "light" || localStorage?.theme === "dark") {
       return localStorage.theme;
     }
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -40,7 +40,7 @@ export const ThemeToggle = () => {
   }, []);
 
   return (
-    <Button onClick={() => toggleTheme()}>
+    <Button onClick={() => toggleTheme()} variant="outline">
       {theme === "dark" ? <Moon /> : <Sun />}
     </Button>
   );
