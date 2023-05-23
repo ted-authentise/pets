@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 type Theme = "light" | "dark";
 
 const useTheme = () => {
+  const [theme, setTheme] = useState("dark");
   const getInitialTheme = (): Theme => {
-    if (localStorage?.theme === "light" || localStorage?.theme === "dark") {
+    if (localStorage.theme === "light" || localStorage.theme === "dark") {
       return localStorage.theme;
     }
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -16,7 +17,11 @@ const useTheme = () => {
       : "light";
   };
 
-  const [theme, setTheme] = useState(getInitialTheme());
+  useEffect(() => {
+    const theme = getInitialTheme();
+    window.document.documentElement.classList.add(theme);
+    setTheme(theme);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -34,10 +39,6 @@ const useTheme = () => {
 
 export const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    window.document.documentElement.classList.add(theme);
-  }, []);
 
   return (
     <Button onClick={() => toggleTheme()} variant="outline">

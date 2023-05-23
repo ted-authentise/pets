@@ -6,6 +6,7 @@ Built with Next, Shad UI, Tailwind and React Query. To start the dev server, run
 
 ```
 cd frontend
+npm install
 npm run dev
 ```
 
@@ -17,6 +18,7 @@ Built with FastAPI, Poetry, and a Sqlite database. To start the server, run:
 
 ```
 cd backend
+poetry install
 poetry run start
 ```
 
