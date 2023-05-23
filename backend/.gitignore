@@ -1,2 +1,3 @@
 pets.db
 pets_api/__pycache__
+.pytest_cache

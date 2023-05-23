@@ -44,6 +44,7 @@ def test_add_pet():
     # Cleanup
     test_client.delete("/pets/Buddy")
 
+
 def test_get_by_name():
     test_client.put(
         "/pets",
@@ -96,7 +97,8 @@ def test_get_by_type():
     # Cleanup
     test_client.delete("/pets/Buddy")
     test_client.delete("/pets/Buddy2")
-    
+
+
 def test_delete_by_name():
     test_client.put(
         "/pets",
@@ -108,12 +110,13 @@ def test_delete_by_name():
             "ranking": 50,
         },
     )
-     
+
     response = test_client.delete("/pets/Buddy")
     assert response.status_code == 204
     # Should still return 204 for record that does not exist
     response = test_client.delete("/pets/Buddy2")
     assert response.status_code == 204
+
 
 def test_delete_by_type():
     test_client.put(
@@ -142,6 +145,4 @@ def test_delete_by_type():
 
     response = test_client.delete("/pets?type=Cat")
     assert response.status_code == 200
-    assert  response.json()["rows_affected"] == 0
-    
- 
+    assert response.json()["rows_affected"] == 0

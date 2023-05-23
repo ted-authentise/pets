@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 import sqlite3
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -26,11 +27,11 @@ async def get_by_type(type: str):
 @app.get("/pets/{name}")
 async def get_by_name(name: str):
     cursor.execute(
-        "SELECT name, breed, type, image, ranking FROM pets WHERE name LIKE ?"
-    , [name])
+        "SELECT name, breed, type, image, ranking FROM pets WHERE name LIKE ?", [name]
+    )
     pet = cursor.fetchone()
     if pet is None:
-      raise HTTPException(status_code=404, detail="Pet not found")
+        raise HTTPException(status_code=404, detail="Pet not found")
     return pet
 
 
@@ -65,8 +66,14 @@ async def delete_by_type(type: str):
 
 
 @app.delete("/pets/{name}", status_code=204)
-async def delete_by_name(name):
+async def delete_by_name(name: str):
     cursor.execute("DELETE FROM pets WHERE name LIKE ?", [name])
 
     connection.commit()
 
+
+def start():
+    # pyright: ignore[reportUnknownMemberType]
+    uvicorn.run(  # pyright: ignore[reportUnknownMemberType]
+        "pets_api.main:app", host="0.0.0.0", port=8000, reload=True
+    )
