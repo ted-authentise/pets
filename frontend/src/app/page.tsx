@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent } from "@/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { BreedPicker } from "./breed-picker";

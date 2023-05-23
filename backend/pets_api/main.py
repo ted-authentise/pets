@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-connection = sqlite3.connect("pets.db")
+connection = sqlite3.connect("pets.db", check_same_thread=False)
 cursor = connection.cursor()
 cursor.execute(
     """CREATE TABLE IF NOT EXISTS pets
@@ -69,3 +69,4 @@ async def delete_by_name(name):
     cursor.execute("DELETE FROM pets WHERE name LIKE ?", [name])
 
     connection.commit()
+
