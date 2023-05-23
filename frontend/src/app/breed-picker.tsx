@@ -20,7 +20,9 @@ export const BreedPicker: React.FC<Props> = ({ value, setValue }) => {
       <SelectContent className="h-40">
         <SelectItem value="">All Breeds</SelectItem>
         {breeds.map((breed) => (
-          <SelectItem value={breed.path}>{toTitle(breed.name)}</SelectItem>
+          <SelectItem key={breed.path} value={breed.path}>
+            {toTitle(breed.name)}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>
