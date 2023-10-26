@@ -3,7 +3,6 @@ name = "pets-api"
 version = "0.1.0"
 description = ""
 authors = ["Ted <ted_bennett@icloud.com>"]
-readme = "README.md"
 packages = [{include = "pets_api"}]
 
 [tool.poetry.dependencies]
