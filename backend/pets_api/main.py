@@ -14,63 +14,64 @@ cursor.execute(
 )
 cursor.execute("""CREATE UNIQUE INDEX IF NOT EXISTS idx_pet_name ON pets (name);""")
 
-@app.get("/")
-def get_root():
-    html_content = """
-    <html>
-        <head>
-            <title>Pets API</title>
-        </head>
-        <body>
-            <h1> Pets API </h1>
+# @app.get("/")
+# def get_root():
+#     html_content = """
+#     <html>
+#         <head>
+#             <title>Pets API</title>
+#         </head>
+#         <body>
+#             <h1> Pets API </h1>
 
-            <h2> API Endpoints </h2>
+#             <h2> API Endpoints </h2>
 
-            <h3>Create a Pet</h3>
+#             <h3>Create a Pet</h3>
 
-            <code>
-            PUT /pets
-            </code>
+#             <code>
+#             PUT /pets
+#             </code>
 
-            <p>Body<p>
+#             <p>Body<p>
 
-            <code>
-            {
-            "name": string,
-            "breed": string,
-            "type": string,
-            "image": string,
-            "ranking": number,
-            }
-            </code>
+#             <code>
+#             {
+#             "name": string,
+#             "breed": string,
+#             "type": string,
+#             "image": string,
+#             "ranking": number,
+#             }
+#             </code>
 
-            <h3>Get all pets of a type</h3>
+#             <h3>Get all pets of a type</h3>
 
-            <code>
-            GET /pets?type={type}
-            </code>
+#             <code>
+#             GET /pets?type={type}
+#             </code>
 
-            <h3>Get a pet by name </h3>
+#             <h3>Get a pet by name </h3>
 
-            <code>
-            GET /pets/{name}
-            </code>
+#             <code>
+#             GET /pets/{name}
+#             </code>
 
-            <h3> Delete a pet by name </h3>
+#             <h3> Delete a pet by name </h3>
 
-            <code>
-            DELETE /pets/{name}
-            </code>
+#             <code>
+#             DELETE /pets/{name}
+#             </code>
 
-            <h3> Delete all pets of a type </h3>
+#             <h3> Delete all pets of a type </h3>
 
-            <code>
-            DELETE /pets?type={type}
-            </code>
-        </body>
-    </html>
-    """
-    return HTMLResponse(content=html_content, status_code=200)
+#             <code>
+#             DELETE /pets?type={type}
+#             </code>
+#         </body>
+#     </html>
+#     """
+#     return HTMLResponse(content=html_content, status_code=200)
+
 
 @app.get("/pets")
 async def get_by_type(type: str):
